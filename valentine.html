@@ -32,15 +32,45 @@ body {
   100% { transform: translateY(-10vh); opacity: 0; }
 }
 
+/* Card */
 .card {
   background: rgba(255,255,255,0.15);
   padding: 35px 25px;
   border-radius: 25px;
   text-align: center;
   max-width: 360px;
+  max-height: 450px;
+  overflow-y: auto;
   backdrop-filter: blur(12px);
   box-shadow: 0 20px 50px rgba(0,0,0,0.3);
   animation: fadeIn 1.5s ease;
+  scroll-behavior: smooth;
+}
+
+/* Custom Scrollbar */
+.card::-webkit-scrollbar {
+  width: 8px;
+}
+
+.card::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+
+.card::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #ffffff, #ffd1dc);
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+}
+
+.card::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #ffe4ec, #ffb6c1);
+}
+
+/* Firefox */
+.card {
+  scrollbar-width: thin;
+  scrollbar-color: #ffffff rgba(255,255,255,0.1);
 }
 
 @keyframes fadeIn {
@@ -109,7 +139,6 @@ button:hover {
 
 <body>
 
-<!-- Floating hearts -->
 <script>
 for(let i=0;i<25;i++){
   let heart = document.createElement("div");
@@ -142,10 +171,12 @@ for(let i=0;i<25;i++){
 
 <script>
 const text = "To my future wife,\n\nBetween every sunrise and every silent night,\nmy heart whispers your name\nlike a prayer it never forgets.\n\nIn the quiet spaces of the day,\nin the chaos of the world,\nit is always you I choose.\n\nI promise to love you gently —\nwith a softness that heals your tired days.\nTo stand by you fiercely —\nwith a strength that shields you from every storm.\nTo cherish you endlessly —\nnot just in grand moments,\nbut in the smallest breaths we share.\n\nI promise patience when the world feels heavy,\nunderstanding when words fall short,\nand loyalty that never trembles.\n\nThrough every season,\nevery doubt,\nevery dream,\nmy heart will remain yours —\nsteady, certain, and forever devoted. 💫";
+
 let i = 0;
 function typeWriter(){
   if(i < text.length){
-    document.getElementById("typewriter").innerHTML += text.charAt(i) === "\n" ? "<br>" : text.charAt(i);
+    document.getElementById("typewriter").innerHTML += 
+      text.charAt(i) === "\n" ? "<br>" : text.charAt(i);
     i++;
     setTimeout(typeWriter, 40);
   }
@@ -165,5 +196,3 @@ function closeLove(){
 
 </body>
 </html>
-
-
