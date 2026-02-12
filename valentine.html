@@ -9,13 +9,25 @@
 body {
   margin: 0;
   height: 100vh;
-  background: linear-gradient(135deg, #ff758c, #ff7eb3);
+  background: url('https://drive.google.com/file/d/1MgvTSDX1jCvx1PqT_UP5Vc8uoQeg4p7P/view?usp=drivesdk?auto=format&fit=crop&w=1600&q=80') no-repeat center center/cover;
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: 'Segoe UI', sans-serif;
   overflow: hidden;
   color: white;
+  position: relative;
+}
+
+/* Dark overlay for better readability */
+body::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(3px);
+  z-index: 0;
 }
 
 /* Floating hearts */
@@ -23,17 +35,20 @@ body {
   position: absolute;
   font-size: 20px;
   animation: float 8s linear infinite;
-  opacity: 0.5;
+  opacity: 0.6;
+  z-index: 1;
 }
 
 @keyframes float {
   0% { transform: translateY(100vh); opacity: 0; }
-  30% { opacity: 0.6; }
+  30% { opacity: 0.8; }
   100% { transform: translateY(-10vh); opacity: 0; }
 }
 
 /* Card */
 .card {
+  position: relative;
+  z-index: 2;
   background: rgba(255,255,255,0.15);
   padding: 35px 25px;
   border-radius: 25px;
@@ -42,7 +57,7 @@ body {
   max-height: 450px;
   overflow-y: auto;
   backdrop-filter: blur(12px);
-  box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.4);
   animation: fadeIn 1.5s ease;
   scroll-behavior: smooth;
 }
@@ -51,23 +66,14 @@ body {
 .card::-webkit-scrollbar {
   width: 8px;
 }
-
 .card::-webkit-scrollbar-track {
   background: rgba(255, 255, 255, 0.1);
   border-radius: 10px;
 }
-
 .card::-webkit-scrollbar-thumb {
   background: linear-gradient(180deg, #ffffff, #ffd1dc);
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
 }
-
-.card::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #ffe4ec, #ffb6c1);
-}
-
-/* Firefox */
 .card {
   scrollbar-width: thin;
   scrollbar-color: #ffffff rgba(255,255,255,0.1);
@@ -127,8 +133,9 @@ button:hover {
   position: fixed;
   width: 100%;
   height: 100%;
-  background: rgba(0,0,0,0.4);
+  background: rgba(0,0,0,0.5);
   display: none;
+  z-index: 5;
 }
 
 .overlay.active {
@@ -170,7 +177,7 @@ for(let i=0;i<25;i++){
 </audio>
 
 <script>
-const text = "To my future wife,\n\nBetween every sunrise and every silent night,\nmy heart whispers your name\nlike a prayer it never forgets.\n\nIn the quiet spaces of the day,\nin the chaos of the world,\nit is always you I choose.\n\nI promise to love you gently —\nwith a softness that heals your tired days.\nTo stand by you fiercely —\nwith a strength that shields you from every storm.\nTo cherish you endlessly —\nnot just in grand moments,\nbut in the smallest breaths we share.\n\nI promise patience when the world feels heavy,\nunderstanding when words fall short,\nand loyalty that never trembles.\n\nThrough every season,\nevery doubt,\nevery dream,\nmy heart will remain yours —\nsteady, certain, and forever devoted. 💫";
+const text = "To my future wife,\n\nBetween every sunrise and every silent night,\nmy heart whispers your name like a prayer it never forgets.\n\nIn the quiet spaces of the day,\nin the chaos of the world,\nit is always you I choose.\n\nThrough every season,\nevery doubt,\nevery dream,\nmy heart will remain yours — steady, certain, and forever devoted. 💫";
 
 let i = 0;
 function typeWriter(){
